@@ -1,0 +1,25 @@
+import logging
+from dataclasses import dataclass
+from uuid import UUID
+
+from src.application.common.query import Query, QueryHandler
+from src.application.image.dto import Images
+from src.application.image.interfaces import ImageReader
+
+
+logger = logging.getLogger(__name__)
+
+
+@dataclass(frozen=True)
+class GetImagesByUserID(Query[Images]):
+    user_id: UUID
+
+
+class GetImagesByUserIDHandler(QueryHandler[GetImagesByUserID, Images]):
+    def __init__(self, reader: ImageReader) -> None:
+        self._reader = reader
+
+    async def __call__(self, command: GetImagesByUserID) -> Images:
+        images = self._reader.get_images_by_user_id(command.user_id)
+        logger.debug("Get images by user id", extra={"user_id": command.user_id, "images": images})
+        return images
