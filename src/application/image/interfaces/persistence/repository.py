@@ -7,6 +7,10 @@ from src.domain.image.value_objects import ImageID, UserID, ImageURL
 
 class ImageRepository(Protocol):
     @abstractmethod
+    async def acquire_image_by_id(self, image_id: ImageID) -> Image:
+        raise NotImplementedError
+
+    @abstractmethod
     async def add_image(self, image: Image) -> None:
         raise NotImplementedError
 
