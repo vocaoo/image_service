@@ -18,7 +18,10 @@ class Image(AggregateRoot):
 
     @classmethod
     def create(
-        cls, image_id: ImageID, url: ImageURL, user_id: UserID, existing_images: set[ImageURL]
+        cls, image_id: ImageID,
+        url: ImageURL,
+        user_id: UserID,
+        existing_images: set[ImageURL],
     ) -> Self:
         if len(existing_images) > IMAGE_LIMIT:
             raise ImageLimitReached(user_id.to_raw())
