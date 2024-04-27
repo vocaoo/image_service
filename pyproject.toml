@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.12"
 uuid6 = "^2024.1.12"
 didiator = "^0.3.1"
+adaptix = "^3.0.0b5"
 
 
 [build-system]
