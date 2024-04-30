@@ -5,5 +5,5 @@ from src.domain.common.value_objects import ValueObject
 
 
 @dataclass(frozen=True)
-class UserID(ValueObject[UUID]):
+class ForeignKey(ValueObject[UUID]):
     value: UUID

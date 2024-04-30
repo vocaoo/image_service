@@ -11,15 +11,15 @@ logger = logging.getLogger(__name__)
 
 
 @dataclass(frozen=True)
-class GetImagesByUserID(Query[Images]):
-    user_id: UUID
+class GetImagesByForeignKey(Query[Images]):
+    foreign_key: UUID
 
 
-class GetImagesByUserIDHandler(QueryHandler[GetImagesByUserID, Images]):
+class GetImagesByForeignKeyHandler(QueryHandler[GetImagesByForeignKey, Images]):
     def __init__(self, reader: ImageReader) -> None:
         self._reader = reader
 
-    async def __call__(self, command: GetImagesByUserID) -> Images:
-        images = self._reader.get_images_by_user_id(command.user_id)
-        logger.debug("Get images by user id", extra={"user_id": command.user_id, "images": images})
+    async def __call__(self, command: GetImagesByForeignKey) -> Images:
+        images = self._reader.get_images_by_foreign_key(command.foreign_key)
+        logger.debug("Get images by foreign key", extra={"foreign_key": command.foreign_key, "images": images})
         return images

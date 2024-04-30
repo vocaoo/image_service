@@ -8,4 +8,4 @@ from src.domain.common.events import Event
 class ImageDeleted(Event):
     id: UUID
     url: str
-    user_id: UUID
+    foreign_key: UUID

@@ -11,5 +11,5 @@ class ImageReader(Protocol):
         raise NotImplementedError
 
     @abstractmethod
-    async def get_images_by_user_id(self, user_id: UUID) -> Images:
+    async def get_images_by_foreign_key(self, foreign_key: UUID) -> Images:
         raise NotImplementedError

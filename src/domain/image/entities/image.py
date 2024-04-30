@@ -4,7 +4,7 @@ from typing import Self
 from src.domain.common.entities import AggregateRoot
 from src.domain.image.events import ImageCreated, ImageDeleted
 from src.domain.image.exceptions import ImageLimitReached
-from src.domain.image.value_objects import ImageURL, ImageID, UserID
+from src.domain.image.value_objects import ImageURL, ImageID, ForeignKey
 
 
 IMAGE_LIMIT = 10
@@ -14,24 +14,24 @@ IMAGE_LIMIT = 10
 class Image(AggregateRoot):
     id: ImageID
     url: ImageURL
-    user_id: UserID
+    foreign_key: ForeignKey
 
     @classmethod
     def create(
         cls, image_id: ImageID,
         url: ImageURL,
-        user_id: UserID,
+        foreign_key: ForeignKey,
         existing_images: set[ImageURL],
     ) -> Self:
         if len(existing_images) > IMAGE_LIMIT:
-            raise ImageLimitReached(user_id.to_raw())
+            raise ImageLimitReached(foreign_key.to_raw())
 
-        image = cls(image_id, url, user_id)
+        image = cls(image_id, url, foreign_key)
         image.record_event(
             ImageCreated(
                 id=image_id.to_raw(),
                 url=url.to_raw(),
-                user_id=user_id.to_raw(),
+                foreign_key=foreign_key.to_raw(),
             )
         )
         return image
@@ -41,6 +41,6 @@ class Image(AggregateRoot):
             ImageDeleted(
                 id=self.id.to_raw(),
                 url=self.url.to_raw(),
-                user_id=self.user_id.to_raw()
+                foreign_key=self.foreign_key.to_raw()
             )
         )

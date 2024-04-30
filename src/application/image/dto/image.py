@@ -8,4 +8,4 @@ from src.application.common.dto import DTO
 class Image(DTO):
     id: UUID
     url: str
-    user_id: UUID
+    foreign_key: UUID
