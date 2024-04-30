@@ -6,9 +6,9 @@ from sqlalchemy.exc import IntegrityError
 from src.domain.image.entities import Image as ImageEntity
 from src.domain.image.value_objects import ForeignKey, ImageURL, ImageID
 from src.application.image.interfaces import ImageRepository
-from src.infastructure.database.repositories.base import SQLAlchemyRepo
-from src.infastructure.database.models import Image
-from src.infastructure.database.converters import convert_db_model_to_image_entity, convert_image_entity_to_db_model
+from src.infrastructure.database.repositories.base import SQLAlchemyRepo
+from src.infrastructure.database.models import Image
+from src.infrastructure.database.converters import convert_db_model_to_image_entity, convert_image_entity_to_db_model
 
 
 class ImageRepositoryImpl(SQLAlchemyRepo, ImageRepository):

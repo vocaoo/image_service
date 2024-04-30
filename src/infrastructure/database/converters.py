@@ -1,7 +1,7 @@
 from src.application.image.dto import Image as ImageDTO
 from src.domain.image.entities import Image as ImageEntity
 from src.domain.image.value_objects import ImageID, ImageURL, ForeignKey
-from src.infastructure.database.models import Image as ImageModel
+from src.infrastructure.database.models import Image as ImageModel
 
 
 def convert_image_entity_to_db_model(image: ImageEntity) -> ImageModel:

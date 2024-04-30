@@ -7,10 +7,10 @@ from src.domain.common.constants import Empty
 from src.application.common.pagination import Pagination, SortOrder, PaginationResult
 from src.application.image.dto import Images, Image as ImageDTO
 from src.application.image.interfaces import ImageReader
-from src.infastructure.database.models import Image
-from src.infastructure.database.repositories.base import SQLAlchemyRepo
-from src.infastructure.database.converters import convert_db_model_to_image_dto
-from src.infastructure.database.exception_mapper import exception_mapper
+from src.infrastructure.database.models import Image
+from src.infrastructure.database.repositories.base import SQLAlchemyRepo
+from src.infrastructure.database.converters import convert_db_model_to_image_dto
+from src.infrastructure.database.exception_mapper import exception_mapper
 
 
 class ImageReaderImpl(SQLAlchemyRepo, ImageReader):
