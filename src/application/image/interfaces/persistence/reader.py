@@ -3,6 +3,7 @@ from typing import Protocol
 from uuid import UUID
 
 from src.application.image.dto import Image, Images
+from src.application.common.pagination import Pagination
 
 
 class ImageReader(Protocol):
@@ -11,5 +12,5 @@ class ImageReader(Protocol):
         raise NotImplementedError
 
     @abstractmethod
-    async def get_images_by_foreign_key(self, foreign_key: UUID) -> Images:
+    async def get_images_by_foreign_key(self, foreign_key: UUID, pagination: Pagination) -> Images:
         raise NotImplementedError
