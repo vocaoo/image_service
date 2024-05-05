@@ -13,6 +13,7 @@ adaptix = "^3.0.0b5"
 sqlalchemy = "^2.0.29"
 orjson = "^3.10.1"
 structlog = "^24.1.0"
+di = "^0.79.2"
 
 
 [build-system]
