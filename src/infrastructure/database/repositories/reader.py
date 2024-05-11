@@ -19,10 +19,10 @@ class ImageReaderImpl(SQLAlchemyRepo, ImageReader):
         query = select(Image)
 
         if pagination.order is SortOrder.ASC:
-            query = query.order_by(Image.id.asc())
+            query = query.order_by(Image.created_at.asc())
 
         if pagination.order is SortOrder.DESC:
-            query = query.order_by(Image.id.desc())
+            query = query.order_by(Image.created_at.desc())
 
         if pagination.offset is not Empty.UNSET:
             query = query.offset(pagination.offset)
@@ -32,7 +32,7 @@ class ImageReaderImpl(SQLAlchemyRepo, ImageReader):
 
         result: Iterable[Image] = await self._session.scalars(query)
         images = [convert_db_model_to_image_dto(image) for image in result]
-        images_count = self._get_images_count()
+        images_count = await self._get_images_count()
         return Images(data=images, pagination=PaginationResult.from_pagination(pagination, total=images_count))
 
     @exception_mapper

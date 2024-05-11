@@ -14,6 +14,9 @@ sqlalchemy = "^2.0.29"
 orjson = "^3.10.1"
 structlog = "^24.1.0"
 di = "^0.79.2"
+fastapi = "^0.111.0"
+asyncpg = "^0.29.0"
+alembic = "^1.13.1"
 
 
 [build-system]

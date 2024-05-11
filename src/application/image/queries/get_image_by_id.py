@@ -20,6 +20,6 @@ class GetImageByIDHandler(QueryHandler[GetImageByID, Image]):
         self._reader = reader
 
     async def __call__(self, command: GetImageByID) -> Image:
-        image = self._reader.get_image_by_id(command.id)
+        image = await self._reader.get_image_by_id(command.id)
         logger.debug("Get image by id", extra={"image_id": command.id, "image": image})
         return image

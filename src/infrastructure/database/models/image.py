@@ -3,10 +3,10 @@ from uuid import UUID
 from sqlalchemy.orm import Mapped, mapped_column
 from uuid6 import uuid7
 
-from .base import BaseModel
+from .base import TimedBaseModel
 
 
-class Image(BaseModel):
+class Image(TimedBaseModel):
     __tablename__ = "images"
     __mapper_args__ = {"eager_defaults": True}
 

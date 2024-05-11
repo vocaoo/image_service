@@ -17,8 +17,8 @@ logger = logging.getLogger(__name__)
 @dataclass(frozen=True)
 class CreateImage(Command[UUID]):
     id: UUID
-    url: ImageURL
-    foreign_key: ForeignKey
+    url: str
+    foreign_key: UUID
 
 
 class CreateImageHandler(CommandHandler[CreateImage, UUID]):

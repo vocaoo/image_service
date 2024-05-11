@@ -32,10 +32,10 @@ class ImageRepositoryImpl(SQLAlchemyRepo, ImageRepository):
         try:
             await self._session.execute(query)
         except IntegrityError as err:
-            pass  # TODO: Add custom exception here
+            raise  # TODO: Add custom exception here
 
     async def get_existing_images(self, foreign_key: ForeignKey) -> set[ImageURL]:
         query = select(Image.url).where(Image.foreign_key == foreign_key.to_raw())
-        result: Iterable[str] = self._session.scalars(query)
+        result: Iterable[str] = await self._session.scalars(query)
         existing_images = {ImageURL(url) for url in result}
         return existing_images
